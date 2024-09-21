@@ -4,7 +4,6 @@ import Navbar from './components/navbar';
 import './App.css';
 import LoginButton from './components/loginButton';
 import LogoutButton from './components/logoutButton';
-import Chart from './components/chart';
 import { Route, Routes } from 'react-router-dom';
 import Chatbot from './components/chatbot';
 import Home from './pages/Home';
@@ -27,14 +26,12 @@ function App() {
         <>
           <Navbar onSearch={handleSearch} />
           <Routes> 
-            <Route path="/home" element={<Home />} />
+            <Route path="/home" element={<Home stockData={stockData} />} />
             <Route path="/search" element={<Search />} />
             <Route path="/profile" element={<Profile />} />
           </Routes>
           <Chatbot />
           <LogoutButton />
-          {stockData && <Chart data={stockData} />}
-
         </>
       )}
     </div>

@@ -33,14 +33,16 @@ const Navbar = ({ onSearch }) => {
       </div>
       <div className="navbar-center">
         <form onSubmit={handleSearch} className="search-form">
-          <input
-            type="text"
-            placeholder="Search for stocks..."
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-            className="search-input"
-          />
-          <button type="submit" className="search-button">Search</button>
+          <div className="search-container">
+            <input
+              type="text"
+              placeholder="Search for stocks..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              className="search-input"
+            />
+            <button type="submit" className="search-button">Search</button>
+          </div>
         </form>
       </div>
       <div className="navbar-right">

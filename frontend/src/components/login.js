@@ -1,6 +1,10 @@
 import React from 'react';
+
 import "./login.css";
-import LoginButton from './loginButton'; // Ensure the file path is correct
+import LoginButton from './loginButton'; 
+
+import "./Login.css";
+
 
 function Login() {
   return (

@@ -7,12 +7,14 @@ from alpaca.data.historical import StockHistoricalDataClient
 from alpaca.data.requests import StockLatestQuoteRequest, StockBarsRequest
 from alpaca.data.timeframe import TimeFrame
 from config import api_key, api_secret
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, date
+from flask_cors import CORS
 
 # Import the Hugging Face integration module
 from huggingface_integration import generate_response
 
 app = Flask(__name__)
+CORS(app) 
 
 # Initialize Alpaca API client
 trading_client = TradingClient(api_key, api_secret, paper=True)
@@ -20,12 +22,14 @@ trading_client = TradingClient(api_key, api_secret, paper=True)
 @app.route('/')
 def get_account():
     account = trading_client.get_account()
+    current_date = date.today().isoformat()
     return jsonify({
         'id': account.id,
         'cash': account.cash,
         'portfolio_value': account.portfolio_value,
         'equity': account.equity,
         'last_equity': account.last_equity,
+        'date': current_date
     })
 
 @app.route('/positions')
@@ -58,7 +62,7 @@ def get_stock_history(symbol):
     data_client = StockHistoricalDataClient(api_key, api_secret)
     
     end = datetime.now()
-    start = end - timedelta(days=7)
+    start = end - timedelta(days=31)
     
     request_params = StockBarsRequest(
         symbol_or_symbols=symbol,

@@ -1,24 +1,44 @@
-import Home from './pages/Home';
-import Profile from './pages/Profile'
-import Search from './pages/Search'
-import Navbar from './components/navbar'
-import Chatbot from './components/chatbot'
+import React, { useState } from 'react';
+import { useAuth0 } from "@auth0/auth0-react";
+import Navbar from './components/navbar';
 import './App.css';
 import LoginButton from './components/loginButton';
-import { Routes, Route } from 'react-router-dom'
+import LogoutButton from './components/logoutButton';
+import Chart from './components/chart';
+import { Route, Routes } from 'react-router-dom';
+import Chatbot from './components/chatbot';
+import Home from './pages/Home';
+import Search from './pages/Search';
+import Profile from './pages/Profile';
 
 function App() {
+  const { isAuthenticated } = useAuth0();
+  const [portfolioData, setPortfolioData] = useState(null);
+  const [stockData, setStockData] = useState(null);
+
+  const handleSearch = (data) => {
+    setStockData(data);
+  };
+
   return (
     <div className="App">
-      <Navbar />
-      <Routes>
+      <Navbar onSearch={handleSearch} />
+      <Routes> 
         <Route path="/home" element={<Home />} />
-        <Route path="/profile" element={<Profile />} />
         <Route path="/search" element={<Search />} />
+        <Route path="/profile" element={<Profile />} />
       </Routes>
-      <LoginButton/>
-      <Chatbot/>
-        
+      {!isAuthenticated ? (
+        <LoginButton />
+      ) : (
+        <>
+          <LogoutButton />
+          {portfolioData && <Chart data={portfolioData} />}
+          {stockData && <Chart data={stockData} />}
+
+        </>
+      )}
+      <Chatbot />
     </div>
   );
 }

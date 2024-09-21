@@ -1,8 +1,7 @@
 import React from 'react';
 
 import "./login.css";
-import LoginButton from '../loginButton'; 
-
+import LoginButton from './loginButton'; 
 
 function Login() {
   return (

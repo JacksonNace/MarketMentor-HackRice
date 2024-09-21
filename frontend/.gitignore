@@ -22,3 +22,10 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+#Hugging Face API key
+HuggingFace_MarketMentor_API_Key = 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
+
+#MongoDB Connection
+MongoDB_URI = mongodb+srv://rgtz1890:QVfS7UbOXoHquiuS@marketmentorapp.ehn01.mongodb.net/
+

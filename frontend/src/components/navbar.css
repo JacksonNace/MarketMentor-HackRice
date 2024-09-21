@@ -5,6 +5,9 @@
   background-color: #333;
   color: #fff;
   padding: 1rem;
+  position:sticky;
+  z-index:0;
+  top:0;
 }
 
 .navbar-left .logo {

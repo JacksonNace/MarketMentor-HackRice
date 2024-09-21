@@ -3,9 +3,6 @@ import React from 'react';
 import "./login.css";
 import LoginButton from './loginButton'; 
 
-import "./Login.css";
-
-
 function Login() {
   return (
     <div className="loginPage">

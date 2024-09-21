@@ -24,7 +24,7 @@ const Navbar = () => {
         <a href="/home">Home</a>
       </li>
       <li>
-        <a href="/home1">home1</a>
+        <a href="/home1">Profile</a>
       </li>
       <li>
         <a href="/home2">home2</a>

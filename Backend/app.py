@@ -11,7 +11,7 @@ from datetime import datetime, timedelta, date
 from flask_cors import CORS
 
 # Import the Hugging Face integration module
-from huggingface_integration import generate_response
+from RiceHackathon.Backend.ai import generate_response
 
 app = Flask(__name__)
 CORS(app) 

@@ -1,17 +1,21 @@
-import logo from './logo.svg';
-import Navbar from './components/navbar';
-import Home from './components/Home';
+import Home from './pages/Home';
+import Profile from './pages/Profile'
+import Search from './pages/Search'
+import Navbar from './components/Navbar'
 import './App.css';
-import Login from './components/login';
-import LogoutButton from './components/logoutButton';
-
+import LoginButton from './components/loginButton';
+import { Routes, Route } from 'react-router-dom'
 
 function App() {
   return (
     <div className="App">
-      <Navbar/>
-      <Login/>
-      <LogoutButton/>
+        <Navbar />
+        <Routes>
+          <Route path="/home" element={<Home />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/search" element={<Search />} />
+        </Routes>
+      <LoginButton/>
     </div>
   );
 }

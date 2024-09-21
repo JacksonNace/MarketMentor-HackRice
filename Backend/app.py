@@ -62,7 +62,7 @@ def get_stock_history(symbol):
     data_client = StockHistoricalDataClient(api_key, api_secret)
     
     end = datetime.now()
-    start = end - timedelta(days=31)
+    start = end - timedelta(days=365)
     
     request_params = StockBarsRequest(
         symbol_or_symbols=symbol,

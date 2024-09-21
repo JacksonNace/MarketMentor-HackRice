@@ -1,8 +1,11 @@
 import React from 'react';
 import './navbar.css';
+<<<<<<< Updated upstream
 
 
 
+=======
+>>>>>>> Stashed changes
 
 const Navbar = () => {
   return (

@@ -9,6 +9,9 @@ from alpaca.data.timeframe import TimeFrame
 from config import api_key, api_secret
 from datetime import datetime, timedelta
 
+# Import the Hugging Face integration module
+from huggingface_integration import generate_response
+
 app = Flask(__name__)
 
 # Initialize Alpaca API client
@@ -82,6 +85,16 @@ def get_stock_history(symbol):
         })
     except Exception as e:
         return jsonify({'error': str(e)}), 400
+    
+# Hugging Face Route to handle chat-like responses
+@app.route('/ask', methods=['POST'])
+def ask_question():
+    user_input = request.json.get('prompt')
+    
+    # Call the generate_response function from the huggingface_integration module
+    response, status_code = generate_response(user_input)
+    
+    return jsonify(response), status_code
 
 if __name__ == '__main__':
     app.run(debug=True)

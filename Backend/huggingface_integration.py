@@ -6,7 +6,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 # Hugging Face API key from .env file
-HUGGINGFACE_API_KEY = os.getenv("HuggingFace_MarketMentor_API_Key")
+HUGGINGFACE_API_KEY = '_fkfgHEundtSUxkbouaDqaDTkRCabsBajCF'
 
 # Hugging Face API URL (ChatGPT-like model like GPT-2)
 HUGGINGFACE_API_URL = "https://api-inference.huggingface.co/models/gpt2"

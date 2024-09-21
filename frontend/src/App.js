@@ -9,6 +9,7 @@ import Home from './pages/Home';
 import Search from './pages/Search';
 import Profile from './pages/Profile';
 import './App.css';
+import Welcome from './pages/Welcome';
 
 function App() {
   const { isAuthenticated } = useAuth0();
@@ -21,7 +22,7 @@ function App() {
   return (
     <div className="App">
       {!isAuthenticated ? (
-        <LoginButton />
+        <Welcome/>
       ) : (
         <>
           <Navbar onSearch={handleSearch} />

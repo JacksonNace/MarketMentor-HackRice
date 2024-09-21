@@ -1,5 +1,6 @@
 import React from 'react';
-import './Navbar.css';
+import './navbar.css';
+
 
 const Navbar = () => {
   return (
@@ -21,6 +22,8 @@ const Navbar = () => {
         <a href="/register">Register</a>
       </li>
       <li>
+        <a href="/home1">Profile</a>
+
         <a href="/login">login</a>
       </li>
       <li>

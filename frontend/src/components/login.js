@@ -10,18 +10,17 @@ function Login() {
   return (
     <div className="loginPage">
       <div className="loginBox">
-        <h1 className="loginTitle">Login</h1>
-
+        {/* <h1 className="loginTitle">Login</h1>
         
         <h2 className="loginPart">Username</h2>
-        <input className="loginInputBox" placeholder="Username..." />
+        <input className="loginInputBox" placeholder="Username..." required/>
 
         <h2 className="loginPart">Password</h2>
-        <input className="loginInputBox" placeholder="Password" type="password" />
-        
-        <LoginButton /> {/* Render the LoginButton component */}
-
+        <input className="loginInputBox" placeholder="Password" type="password" required/> */}
+         
+        <LoginButton/>
       </div>
+      
     </div>
   );
 }

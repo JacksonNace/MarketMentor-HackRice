@@ -1,6 +1,7 @@
 import React from 'react';
 import './navbar.css';
 
+
 const Navbar = () => {
   return (
 
@@ -18,10 +19,12 @@ const Navbar = () => {
   <div className="navbar-right">
   <ul className="nav-links">
       <li>
-        <a href="/home">Home</a>
+        <a href="/register">Register</a>
       </li>
       <li>
         <a href="/home1">Profile</a>
+
+        <a href="/login">login</a>
       </li>
       <li>
         <a href="/home2">home2</a>

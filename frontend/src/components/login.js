@@ -1,19 +1,23 @@
 import React from 'react';
-import "./Login.css";
+import "./login.css";
+import LoginButton from './loginButton'; // Ensure the file path is correct
 
-function login() {
+function Login() {
   return (
     <div className="loginPage">
       <div className="loginBox">
         <h1 className="loginTitle">Login</h1>
-        <h2 classname="loginPart">Username</h2>
+        
+        <h2 className="loginPart">Username</h2>
         <input className="loginInputBox" placeholder="Username..." />
-        <h2 classname="loginPart">Password</h2>
-        <input className="loginInputBox" placeholder="Password" />
-        <button className="loginSubmitButton">Log in</button> 
+
+        <h2 className="loginPart">Password</h2>
+        <input className="loginInputBox" placeholder="Password" type="password" />
+        
+        <LoginButton /> {/* Render the LoginButton component */}
       </div>
     </div>
-  )
+  );
 }
 
-export default login
+export default Login;

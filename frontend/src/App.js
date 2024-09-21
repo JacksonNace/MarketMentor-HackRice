@@ -13,7 +13,6 @@ import Profile from './pages/Profile';
 
 function App() {
   const { isAuthenticated } = useAuth0();
-  const [portfolioData, setPortfolioData] = useState(null);
   const [stockData, setStockData] = useState(null);
 
   const handleSearch = (data) => {
@@ -22,23 +21,22 @@ function App() {
 
   return (
     <div className="App">
-      <Navbar onSearch={handleSearch} />
-      <Routes> 
-        <Route path="/home" element={<Home />} />
-        <Route path="/search" element={<Search />} />
-        <Route path="/profile" element={<Profile />} />
-      </Routes>
       {!isAuthenticated ? (
         <LoginButton />
       ) : (
         <>
+          <Navbar onSearch={handleSearch} />
+          <Routes> 
+            <Route path="/home" element={<Home />} />
+            <Route path="/search" element={<Search />} />
+            <Route path="/profile" element={<Profile />} />
+          </Routes>
+          <Chatbot />
           <LogoutButton />
-          {portfolioData && <Chart data={portfolioData} />}
           {stockData && <Chart data={stockData} />}
 
         </>
       )}
-      <Chatbot />
     </div>
   );
 }

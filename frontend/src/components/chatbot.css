@@ -69,6 +69,7 @@ button {
   bottom: -5px;
   right: 20px;
   z-index: 1000;
+
 }
 
 .openChat {
@@ -83,4 +84,5 @@ button {
 
 .openChat:hover {
   background-color: #0056b3;
+  transform: translateY(-3px);
 }

@@ -5,9 +5,9 @@
   background-color: #333;
   color: #fff;
   padding: 1rem;
-  position:sticky;
-  z-index:0;
-  top:0;
+  position: sticky;
+  z-index: 0;
+  top: 0;
 }
 
 .navbar-left .logo {
@@ -17,53 +17,22 @@
   text-decoration: none;
 }
 
-/* ------------------ */
-
-.navbar-center .nav-links {
-  list-style-type: none;
+/* Center alignment for the search bar */
+.navbar-center {
   display: flex;
-  margin: 0;
-  padding: 0;
-}
-
-.navbar-center .nav-links li {
-  margin-right: 1rem;
-}
-
-.navbar-center .nav-links a {
-  color: #fff;
-  text-decoration: none;
-}
-
-/* ------------------ */
-
-.navbar-right .nav-links {
-  list-style-type: none;
-  display: flex;
-  margin: 0;
-  padding: 0;
-}
-
-.navbar-right .nav-links li {
-  margin-right: 1rem;
-}
-
-.navbar-right .nav-links a {
-  color: #fff;
-  text-decoration: none;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
 }
 
 .search-form {
-  display: flex;
-  justify-content: center;
   width: 100%;
+  max-width: 400px;
 }
 
 .search-container {
   display: flex;
   width: 100%;
-  max-width: 400px;
-  border: 1px solid hidden;
   border-radius: 4px;
   overflow: hidden;
 }
@@ -73,7 +42,7 @@
   padding: 8px;
   border: none;
   outline: none;
-  font-size: 16px; /* Ensure consistent font size */
+  font-size: 16px;
 }
 
 .search-button {
@@ -83,8 +52,7 @@
   border: none;
   cursor: pointer;
   transition: background-color 0.3s ease;
-  font-size: 16px; /* Match input font size */
-  line-height: 1.5; /* Adjust line height to match input */
+  font-size: 16px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -92,4 +60,31 @@
 
 .search-button:hover {
   background-color: #0056b3;
+}
+
+/* Right section for horizontal alignment */
+.navbar-right {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.navbar-right .nav-links {
+  display: flex;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  align-items: center; /* Ensures that all links are centered vertically */
+}
+
+.navbar-right .nav-links li {
+  margin-left: 1.5rem; /* Add space between the links */
+}
+
+.navbar-right .nav-links a {
+  font-size: 16px;  /* Ensuring same font size */
+  color: #fff;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
 }

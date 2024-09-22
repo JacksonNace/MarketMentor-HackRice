@@ -17,14 +17,14 @@ function Chatbot() {
         setUserInput('');
 
         try {
-            const response = await axios.post('http://localhost:5001/response', {
+            const response = await axios.post('http://localhost:5000/response', {
                 message: userMessage,
             }, {
                 headers: {
                     'Content-Type': 'application/json'
                 }
             });
-
+            console.log(response.data)
             const chatbotResponse = response.data.response;
             setMessages(prevMessages => [...prevMessages, { text: chatbotResponse, sender: 'bot' }]);
         } catch (error) {

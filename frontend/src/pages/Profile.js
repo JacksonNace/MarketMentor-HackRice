@@ -6,6 +6,7 @@ function Profile({ isAuthenticated }) {
   const { user } = useAuth0();
   const [portfolioData, setPortfolioData] = useState(null);
   const chartContainerRef = useRef();
+  const chartInstanceRef = useRef(null);
 
   useEffect(() => {
     const fetchPortfolioData = async () => {
@@ -14,6 +15,46 @@ function Profile({ isAuthenticated }) {
         const data = await response.json();
         setPortfolioData(data);
         console.log('Retrieved portfolio data:', data);
+        
+        // Create and update chart
+        if (chartContainerRef.current && !chartInstanceRef.current) {
+          chartInstanceRef.current = createChart(chartContainerRef.current, { 
+            width: 600, // Set a fixed width
+            height: 300,
+            layout: {
+              background: { color: '#ffffff' },
+              textColor: '#333',
+            },
+            grid: {
+              vertLines: { color: '#e0e0e0' },
+              horzLines: { color: '#e0e0e0' },
+            },
+            rightPriceScale: {
+              visible: true,
+            },
+            timeScale: {
+              visible: true,
+              borderColor: '#D1D4DC',
+            },
+          });
+          
+          const lineSeries = chartInstanceRef.current.addLineSeries({ color: '#2962FF' });
+          const currentDate = new Date(data.date);
+          const weekData = [];
+
+          for (let i = 6; i >= 0; i--) {
+            const date = new Date(currentDate);
+            date.setDate(date.getDate() - i);
+            weekData.push({
+              time: date.toISOString().split('T')[0],
+              value: parseFloat(data.equity)
+            });
+          }
+
+          lineSeries.setData(weekData);
+          
+          chartInstanceRef.current.timeScale().fitContent();
+        }
       } catch (error) {
         console.error('Error fetching portfolio data:', error);
       }
@@ -22,6 +63,14 @@ function Profile({ isAuthenticated }) {
     if (isAuthenticated) {
       fetchPortfolioData();
     }
+
+    // Cleanup function
+    return () => {
+      if (chartInstanceRef.current) {
+        chartInstanceRef.current.remove();
+        chartInstanceRef.current = null;
+      }
+    };
   }, [isAuthenticated]);
 
 
@@ -47,7 +96,15 @@ function Profile({ isAuthenticated }) {
           <p>Equity: ${parseFloat(portfolioData.equity).toFixed(2)}</p>
           <p>Last Equity: ${parseFloat(portfolioData.last_equity).toFixed(2)}</p>
           <p>Date: {portfolioData.date}</p>
-          <div ref={chartContainerRef} />
+          <div style={{ display: 'flex', justifyContent: 'center', marginTop: '20px' }}>
+            <div 
+              ref={chartContainerRef} 
+              style={{ 
+                width: '600px', 
+                height: '300px',
+              }} 
+            />
+          </div>
         </div>
       )}
     </div>

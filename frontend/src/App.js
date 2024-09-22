@@ -32,7 +32,7 @@ function App() {
             <Route path="/profile" element={<Profile isAuthenticated={isAuthenticated} />} />
           </Routes>
           <Chatbot />
-          <LogoutButton />
+          {/* <LogoutButton /> */}
         </>
       )}
     </div>

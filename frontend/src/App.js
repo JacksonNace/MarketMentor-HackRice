@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useAuth0 } from "@auth0/auth0-react";
-import { Route, Routes, useLocation } from 'react-router-dom';
+import { Route, Routes, useLocation, useNavigate } from 'react-router-dom';
 import Navbar from './components/navbar';
 import LogoutButton from './components/logoutButton';
 import Chatbot from './components/chatbot';
@@ -11,12 +11,19 @@ import './App.css';
 import Welcome from './pages/Welcome';
 
 function App() {
-  const { isAuthenticated } = useAuth0();
+  const { isAuthenticated, isLoading } = useAuth0();
   const location = useLocation();
+  const navigate = useNavigate();
   const [stockData, setStockData] = useState(null);
   const [buyAmount, setBuyAmount] = useState('');
   const [sellAmount, setSellAmount] = useState('');
   const [stockSymbol, setStockSymbol] = useState('');
+
+  useEffect(() => {
+    if (isAuthenticated && !isLoading && location.pathname === '/') {
+      navigate('/home');
+    }
+  }, [isAuthenticated, isLoading, navigate, location]);
 
   const handleSearch = (data) => {
     setStockData(data);
@@ -96,6 +103,7 @@ function App() {
         <>
           <Navbar onSearch={handleSearch} />
           <Routes>
+            <Route path="/" element={<Home stockData={stockData} />} />
             <Route path="/home" element={<Home stockData={stockData} />} />
             <Route path="/search" element={<Search />} />
             <Route path="/profile" element={<Profile isAuthenticated={isAuthenticated} />} />
@@ -104,7 +112,6 @@ function App() {
           <br/>
           <Chatbot />
           <br />
-          <LogoutButton />
         </>
       )}
     </div>

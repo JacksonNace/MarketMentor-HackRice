@@ -47,3 +47,19 @@ button {
   padding: 10px;
   cursor: pointer;
 }
+
+.message.user {
+  text-align: right;
+  background-color: #d1e7dd;
+  padding: 5px;
+  margin: 5px;
+  border-radius: 10px;
+}
+
+.message.bot {
+  text-align: left;
+  background-color: #f8d7da;
+  padding: 5px;
+  margin: 5px;
+  border-radius: 10px;
+}

@@ -4,8 +4,9 @@
     align-items: center;
     justify-content: space-between;
     height: 100vh;
-    padding: 0 20px;
+    padding: 0px 20px;
     background-color: #f0f2f5;
+    padding-left:40px;
   }
   
   /* Styling the text and adding padding */
@@ -28,7 +29,6 @@
   
   .welcome-heading:hover {
     color: #007bff;
-    transform: scale(1.05);
   }
   
   .welcome-heading span {
@@ -60,10 +60,6 @@
     height: auto;
     border-radius: 12px;
     transition: transform 0.3s ease-in-out;
-  }
-  
-  .welcome-image img:hover {
-    transform: scale(1.05);
   }
   
   /* Button styles and animations */

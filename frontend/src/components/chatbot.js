@@ -1,25 +1,39 @@
 import React, { useState } from 'react';
-import "./chatbot.css"
+import axios from 'axios';
+import "./chatbot.css";
 
 function Chatbot() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [messages, setMessages] = useState([]);
   const [userInput, setUserInput] = useState('');
 
-  const openModal = () => {
-    setIsModalOpen(true);
-  };
+  const openModal = () => setIsModalOpen(true);
+  const closeModal = () => setIsModalOpen(false);
 
-  const closeModal = () => {
-    setIsModalOpen(false);
-  };
-
-  const handleSend = () => {
+  const handleSend = async () => {
     if (userInput.trim()) {
-      setMessages([...messages, userInput]);
-      setUserInput('');
+        const userMessage = userInput.trim();
+        setMessages([...messages, { text: userMessage, sender: 'user' }]);
+        setUserInput('');
+
+        try {
+            const response = await axios.post('http://localhost:5000/response', {
+                message: userMessage,
+            }, {
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
+
+            const chatbotResponse = response.data.response;
+            setMessages(prevMessages => [...prevMessages, { text: chatbotResponse, sender: 'bot' }]);
+        } catch (error) {
+            console.error("Error sending message:", error);
+            setMessages(prevMessages => [...prevMessages, { text: "Error: Failed to get a response", sender: 'bot' }]);
+        }
     }
   };
+
 
   return (
     <div>
@@ -35,8 +49,8 @@ function Chatbot() {
             <h2>Chatbot</h2>
             <div className="messageMenu">
               {messages.map((msg, index) => (
-                <div key={index} className="message">
-                  {msg}
+                <div key={index} className={`message ${msg.sender}`}>
+                  {msg.text}
                 </div>
               ))}
             </div>

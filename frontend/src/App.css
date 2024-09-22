@@ -23,3 +23,12 @@ html, body {
   overflow: hidden;
 }
 
+.trade-input {
+  padding: 10px;
+  border: 2px solid black;
+  border-radius: 5px;
+  font-size: 16px;
+  width: 200px; /* Make input full width of its container */
+  box-sizing: border-box; /* Include padding and border in the element's total width */
+}
+

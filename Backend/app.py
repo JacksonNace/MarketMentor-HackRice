@@ -1,7 +1,7 @@
 from flask import Flask, jsonify, request
 from alpaca.trading.client import TradingClient
-from alpaca.trading.requests import GetAssetsRequest
-from alpaca.trading.enums import AssetClass
+from alpaca.trading.requests import GetAssetsRequest, MarketOrderRequest
+from alpaca.trading.enums import AssetClass, OrderSide, TimeInForce
 from alpaca.common.enums import BaseURL
 from alpaca.data.historical import StockHistoricalDataClient
 from alpaca.data.requests import StockLatestQuoteRequest, StockBarsRequest
@@ -84,6 +84,70 @@ def get_stock_history(symbol):
             'symbol': symbol,
             'history': history
         })
+    except Exception as e:
+        return jsonify({'error': str(e)}), 400
+    
+@app.route('/buy/<symbol>/<float:amount>', methods=['GET', 'POST'])
+def buy_stock(symbol, amount):
+    try:
+        data_client = StockHistoricalDataClient(api_key, api_secret)
+        # Get the latest quote
+        request_params = StockLatestQuoteRequest(symbol_or_symbols=symbol)
+        latest_quote = data_client.get_stock_latest_quote(request_params)
+        
+        # Use the ask price as the latest price
+        latest_price = latest_quote[symbol].ask_price
+        
+        # Calculate quantity based on USD amount
+        quantity = amount / latest_price
+        
+        # Prepare the market order
+        market_order_data = MarketOrderRequest(
+            symbol=symbol,
+            qty=quantity,
+            side=OrderSide.BUY,
+            time_in_force=TimeInForce.DAY
+        )
+        
+        # Submit the order
+        order = trading_client.submit_order(market_order_data)
+        
+        return jsonify({
+            'message': f'Buy order placed for {quantity} shares of {symbol}',
+            'order_id': order.id
+        }), 200
+    except Exception as e:
+        return jsonify({'error': str(e)}), 400
+
+@app.route('/sell/<symbol>/<float:amount>', methods=['GET', 'POST'])
+def sell_stock(symbol, amount):
+    try:
+        data_client = StockHistoricalDataClient(api_key, api_secret)
+        # Get the latest quote
+        request_params = StockLatestQuoteRequest(symbol_or_symbols=symbol)
+        latest_quote = data_client.get_stock_latest_quote(request_params)
+        
+        # Use the bid price as the latest price
+        latest_price = latest_quote[symbol].bid_price
+        
+        # Calculate quantity based on USD amount
+        quantity = amount / latest_price
+        
+        # Prepare the market order
+        market_order_data = MarketOrderRequest(
+            symbol=symbol,
+            qty=quantity,
+            side=OrderSide.SELL,
+            time_in_force=TimeInForce.DAY
+        )
+        
+        # Submit the order
+        order = trading_client.submit_order(market_order_data)
+        
+        return jsonify({
+            'message': f'Sell order placed for {quantity} shares of {symbol}',
+            'order_id': order.id
+        }), 200
     except Exception as e:
         return jsonify({'error': str(e)}), 400
 

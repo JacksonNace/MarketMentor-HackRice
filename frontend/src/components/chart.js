@@ -8,8 +8,8 @@ function Chart({ data }) {
 	useEffect(() => {
 		if (data && chartContainerRef.current) {
 			const chart = createChart(chartContainerRef.current, {
-				width: 600,
-				height: 300,
+				width: 800,  // Increased from 600
+				height: 400, // Increased from 300
 				layout: {
 					background: { color: '#ffffff' },
 					textColor: '#333',

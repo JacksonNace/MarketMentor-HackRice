@@ -1,0 +1,93 @@
+/* Container for the welcome page */
+.welcome-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 100vh;
+    padding: 0 20px;
+    background-color: #f0f2f5;
+  }
+  
+  /* Styling the text and adding padding */
+  .welcome-text {
+    flex: 1;
+    padding-right: 40px;
+    text-align: left;
+    animation: fadeIn 2s ease-in;
+  }
+  
+  /* Interactive heading with hover effect */
+  .welcome-heading {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 20px;
+    transition: transform 0.3s ease-in-out, color 0.3s ease-in-out;
+    cursor: pointer;
+  }
+  
+  .welcome-heading:hover {
+    color: #007bff;
+    transform: scale(1.05);
+  }
+  
+  .welcome-heading span {
+    color: #007bff;
+  }
+  
+  /* Interactive description text */
+  .welcome-text p {
+    font-size: 1.2rem;
+    line-height: 1.5;
+    color: #666;
+    margin-bottom: 30px;
+    transition: color 0.3s ease-in-out;
+  }
+  
+  .welcome-text p:hover {
+    color: #333;
+  }
+  
+  /* Styling the image container */
+  .welcome-image {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+  }
+  
+  .welcome-image img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 12px;
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .welcome-image img:hover {
+    transform: scale(1.05);
+  }
+  
+  /* Button styles and animations */
+  button {
+    padding: 12px 30px;
+    font-size: 1rem;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  button:hover {
+    background-color: #0056b3;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Fade-in animation for the text */
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  

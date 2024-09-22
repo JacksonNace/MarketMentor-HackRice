@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './navbar.css';
 import { Link } from 'react-router-dom';
+import LogoutButton from './logoutButton';
 
 const Navbar = ({ onSearch }) => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -28,7 +29,7 @@ const Navbar = ({ onSearch }) => {
     <nav className="navbar">
       <div className="navbar-left">
         <a href="/" className="logo">
-          MarketMentor
+          Market Mentor
         </a>
       </div>
       <div className="navbar-center">
@@ -54,7 +55,8 @@ const Navbar = ({ onSearch }) => {
             <Link to="/profile">Profile</Link>
           </li>
           <li>
-            <Link to="/search">Search</Link>
+            {/* <Link to="/search">Search</Link> */}
+            <LogoutButton/>
           </li>
         </ul>
       </div>

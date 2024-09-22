@@ -39,14 +39,14 @@ function Chatbot() {
     <div>
       <div className="chatbotButton">
         <button className="openChat" onClick={openModal}>
-          <span>Chatbot</span>
+          <span>Ask Mark</span>
         </button>
       </div>
 
       {isModalOpen && (
         <div className="modal">
           <div className="modalContent">
-            <h2>Chatbot</h2>
+            <h2>Mark: Your personal Financial Advisor</h2>
             <div className="messageMenu">
               {messages.map((msg, index) => (
                 <div key={index} className={`message ${msg.sender}`}>

@@ -4,7 +4,7 @@ import Chart from '../components/chart';
 function Home({ stockData }) {
   return (
     <div className="home">
-      <h1>Welcome to MarketMentor</h1>
+      <h1>Welcome to Market Mentor</h1>
       {stockData ? (
         <div>
           <h2>Search Results</h2>

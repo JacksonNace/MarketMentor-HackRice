@@ -6,7 +6,7 @@ from alpaca.common.enums import BaseURL
 from alpaca.data.historical import StockHistoricalDataClient
 from alpaca.data.requests import StockLatestQuoteRequest, StockBarsRequest
 from alpaca.data.timeframe import TimeFrame
-from config import api_key, api_secret
+# from config import api_key, api_secret
 from datetime import datetime, timedelta, date
 from flask_cors import CORS
 

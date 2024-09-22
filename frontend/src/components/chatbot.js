@@ -32,7 +32,7 @@ function Chatbot() {
             setMessages(prevMessages => [...prevMessages, { text: "Error: Failed to get a response", sender: 'bot' }]);
         }
     }
-  };
+};
 
 
   return (

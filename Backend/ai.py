@@ -35,10 +35,10 @@ def generate_response():
 
     try:
         response = chat_session.send_message(user_message)
-        return jsonify({'response': response.text})  # Change this line
+        return jsonify({'response': response.text})
     except Exception as e:
         print(f"Error in chat session: {str(e)}")
         return jsonify({"error": f"An error occurred: {str(e)}"}), 500
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(port 5001, debug=True)

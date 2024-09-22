@@ -17,7 +17,7 @@ function Chatbot() {
         setUserInput('');
 
         try {
-            const response = await axios.post('http://localhost:5000/response', {
+            const response = await axios.post('http://localhost:5001/response', {
                 message: userMessage,
             }, {
                 headers: {
